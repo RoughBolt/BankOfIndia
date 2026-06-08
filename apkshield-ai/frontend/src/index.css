@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cyber-bg text-cyber-text font-sans antialiased;
+    background-image: 
+      radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-cyber-bg;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cyber-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyber-accent;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-cyber-card border border-cyber-border rounded-xl;
+    backdrop-filter: blur(12px);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-cyber-accent/40 hover:shadow-glow-accent;
+  }
+
+  .cyber-btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm
+           transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyber-accent/50;
+  }
+
+  .cyber-btn-primary {
+    @apply cyber-btn bg-cyber-accent hover:bg-cyber-accent-hover text-white shadow-glow-accent;
+  }
+
+  .cyber-btn-secondary {
+    @apply cyber-btn bg-cyber-surface border border-cyber-border hover:border-cyber-accent/50 text-cyber-text;
+  }
+
+  .cyber-btn-danger {
+    @apply cyber-btn bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 text-red-400;
+  }
+
+  .tag {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .tag-danger {
+    @apply tag bg-red-500/15 text-red-400 border border-red-500/25;
+  }
+
+  .tag-warning {
+    @apply tag bg-yellow-500/15 text-yellow-400 border border-yellow-500/25;
+  }
+
+  .tag-info {
+    @apply tag bg-blue-500/15 text-blue-400 border border-blue-500/25;
+  }
+
+  .tag-success {
+    @apply tag bg-green-500/15 text-green-400 border border-green-500/25;
+  }
+
+  .section-title {
+    @apply text-sm font-semibold uppercase tracking-widest text-cyber-muted mb-4;
+  }
+
+  .stat-label {
+    @apply text-xs text-cyber-text-dim uppercase tracking-wider;
+  }
+
+  .stat-value {
+    @apply text-2xl font-bold text-cyber-text;
+  }
+
+  .mono {
+    @apply font-mono text-sm text-cyber-muted;
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Animated scanner line */
+  .scan-line {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(99,102,241,0.8), transparent);
+    animation: scanLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scanLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* Blinking cursor */
+  .blink {
+    animation: blink 1.2s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(135deg, #6366f1, #8b5cf6) 1;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+}
